@@ -39,7 +39,6 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-blue-300">
-      {/* ✅ Fixed image syntax */}
       <img
         src="/logo.png"
         alt="Safe Taxi"
