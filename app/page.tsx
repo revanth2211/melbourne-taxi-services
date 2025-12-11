@@ -9,23 +9,28 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const waitForGoogleMaps = () => {
-      if (
-        typeof window !== 'undefined' &&
-        (window as any).google?.maps?.places
-      ) {
-        const pickupInput = document.getElementById('pickup') as HTMLInputElement;
-        const dropoffInput = document.getElementById('dropoff') as HTMLInputElement;
+  const waitForGoogleMaps = () => {
+    if (
+      typeof window !== 'undefined' &&
+      (window as any).google?.maps?.places
+    ) {
+      const pickupInput = document.getElementById('pickup') as HTMLInputElement;
+      const dropoffInput = document.getElementById('dropoff') as HTMLInputElement;
 
-        if (pickupInput) new (window as any).google.maps.places.Autocomplete(pickupInput);
-        if (dropoffInput) new (window as any).google.maps.places.Autocomplete(dropoffInput);
-      } else {
-        setTimeout(waitForGoogleMaps, 300);
+      if (pickupInput) {
+        new (window as any).google.maps.places.Autocomplete(pickupInput);
       }
-    };
+      if (dropoffInput) {
+        new (window as any).google.maps.places.Autocomplete(dropoffInput);
+      }
+    } else {
+      setTimeout(waitForGoogleMaps, 300);
+    }
+  };
 
-    waitForGoogleMaps();
-  }, []);
+  waitForGoogleMaps();
+}, []);
+
 
   const handleContinue = () => {
     if (pickup && dropoff) {
